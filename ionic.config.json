@@ -1,0 +1,8 @@
+{
+  "name": "ConversorUnidades",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "27492090"
+}
