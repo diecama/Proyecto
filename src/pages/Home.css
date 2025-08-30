@@ -1,0 +1,9 @@
+/* src/pages/Home.css */
+.categories-grid {
+  padding: 16px;
+}
+
+/* Ajusta el espaciado entre las columnas si es necesario */
+ion-col {
+  padding: 8px;
+}
