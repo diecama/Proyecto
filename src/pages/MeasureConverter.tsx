@@ -40,6 +40,72 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel
 type Unit = { label: string; value: string };
 type UnitsMap = { [key: string]: Unit[] };
 const units: UnitsMap = {
+  luminance: [
+    { label: 'Nit', value: 'nt' },
+    { label: 'Stilb', value: 'sb' },
+    { label: 'Apostilb', value: 'asb' },
+    { label: 'Candela/m²', value: 'cd/m2' },
+  ],
+  illuminance: [
+    { label: 'Lux', value: 'lx' },
+    { label: 'Lumen/m²', value: 'lm/m2' },
+    { label: 'Foot-candle', value: 'fc' },
+    { label: 'Phot', value: 'ph' },
+  ],
+  radiation: [
+    { label: 'Gray', value: 'Gy' },
+    { label: 'Sievert', value: 'Sv' },
+    { label: 'Becquerel', value: 'Bq' },
+    { label: 'Curie', value: 'Ci' },
+  ],
+  sound: [
+    { label: 'Decibelio', value: 'dB' },
+    { label: 'Sonio', value: 'sone' },
+    { label: 'Fon', value: 'phon' },
+  ],
+  viscosity: [
+    { label: 'Poise', value: 'P' },
+    { label: 'Pascal·segundo', value: 'Pa·s' },
+    { label: 'Centipoise', value: 'cP' },
+  ],
+  concentration: [
+    { label: 'Molaridad (mol/L)', value: 'M' },
+    { label: 'ppm', value: 'ppm' },
+    { label: 'Porcentaje (%)', value: '%' },
+  ],
+  capacitance: [
+    { label: 'Faradio', value: 'F' },
+    { label: 'Microfaradio', value: 'μF' },
+    { label: 'Nanofaradio', value: 'nF' },
+    { label: 'Picofaradio', value: 'pF' },
+  ],
+  inductance: [
+    { label: 'Henrio', value: 'H' },
+    { label: 'Milihenrio', value: 'mH' },
+    { label: 'Microhenrio', value: 'μH' },
+  ],
+  charge: [
+    { label: 'Culombio', value: 'C' },
+    { label: 'Amperio-hora', value: 'Ah' },
+    { label: 'Miliamperio-hora', value: 'mAh' },
+  ],
+  resistance: [
+    { label: 'Ohmio', value: 'Ω' },
+    { label: 'Kiloohmio', value: 'kΩ' },
+    { label: 'Megaohmio', value: 'MΩ' },
+  ],
+  conductance: [
+    { label: 'Siemens', value: 'S' },
+    { label: 'Mho', value: 'mho' },
+  ],
+  magneticfield: [
+    { label: 'Tesla', value: 'T' },
+    { label: 'Gauss', value: 'G' },
+  ],
+  magneticflux: [
+    { label: 'Weber', value: 'Wb' },
+    { label: 'Maxwell', value: 'Mx' },
+  ],
   density: [
     { label: 'Kilogramo por metro cúbico', value: 'kg/m3' },
     { label: 'Gramo por centímetro cúbico', value: 'g/cm3' },
@@ -201,7 +267,21 @@ const units: UnitsMap = {
   ],
 };
 
+
 const categories = [
+  { label: 'Luminancia', value: 'luminance' },
+  { label: 'Iluminancia', value: 'illuminance' },
+  { label: 'Radiación', value: 'radiation' },
+  { label: 'Sonido', value: 'sound' },
+  { label: 'Viscosidad', value: 'viscosity' },
+  { label: 'Concentración', value: 'concentration' },
+  { label: 'Capacitancia', value: 'capacitance' },
+  { label: 'Inductancia', value: 'inductance' },
+  { label: 'Carga eléctrica', value: 'charge' },
+  { label: 'Resistencia eléctrica', value: 'resistance' },
+  { label: 'Conductancia', value: 'conductance' },
+  { label: 'Campo magnético', value: 'magneticfield' },
+  { label: 'Flujo magnético', value: 'magneticflux' },
   { label: 'Densidad', value: 'density' },
   { label: 'Longitud', value: 'length' },
   { label: 'Masa', value: 'weight' },
@@ -224,7 +304,17 @@ const categories = [
   { label: 'Dimensión', value: 'dimension' },
 ];
 
+// ...existing code...
+
+
 function convert(category: string, value: number, from: string, to: string): number {
+  // Categorías no implementadas: devolver el mismo valor
+  if ([
+    'luminance','illuminance','radiation','sound','viscosity','concentration','capacitance','inductance','charge','resistance','conductance','magneticfield','magneticflux'
+  ].includes(category)) {
+    // No implementado, devolver el mismo valor
+    return value;
+  }
   // Densidad
   if (category === 'density') {
     // Convertir primero a kg/m3
